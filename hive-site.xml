@@ -1474,14 +1474,7 @@
 </property>
 
 
-<property>
-        <name>hadoop.proxyuser.nandhumidhun.groups</name>
-        <value>*</value>
-    </property>
-    <property>
-        <name>hadoop.proxyuser.nandhumidhun.hosts</name>
-        <value>*</value>
-    </property>
+
 
 </configuration>
 
