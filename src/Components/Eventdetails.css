@@ -1,0 +1,296 @@
+/* Global font family for the entire app */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Container for the event slider */
+.event-slider {
+  display: flex;
+  justify-content: center;
+  overflow: hidden; /* Hides overflowing content */
+  position: relative;
+  width: 100%;
+  padding: 20px;
+}
+
+.event-slide {
+  display: flex;
+  transition: transform 1s ease-in-out;
+  transform: translateX(0);
+}
+
+/* Event card styling */
+.event-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  width: 600px !important;
+  margin-left: 40px; /* Gap between cards */
+  margin-bottom: 40px;
+  flex-shrink: 0;
+  opacity: 400;
+  animation: fadeIn 2s forwards; /* Fade-in animation */
+  display:flex;
+  
+}
+@media (max-width: 768px) {
+  .event-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    width: 250px !important;
+    margin-left: 40px; /* Gap between cards */
+    margin-bottom: 40px;
+    flex-shrink: 0;
+    opacity: 400;
+    animation: fadeIn 2s forwards; /* Fade-in animation */
+    display:flex;
+    
+  }
+}
+
+
+.event-icon {
+  font-size: 8rem !important; /* Set a larger size for the icon */
+  color: #333 !important;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.event-card p {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Hover effect */
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.event-card:hover .event-icon {
+  color: blue !important;
+}
+
+.event-card:hover p {
+  color: #007bff;
+}
+
+/* Keyframe for fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Show sliding animation on hover */
+.event-slider:hover .event-slide {
+  transform: translateX(-300px); /* Move left on hover */
+}
+
+.event-card:hover {
+  transform: scale(1.1); /* Increase size on hover for better visibility */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+  .event-card {
+    width: 200px;
+    margin-right: 20px;
+  }
+
+  .event-icon {
+    font-size: 10rem !important;
+  }
+
+  .event-card p {
+    font-size: 1.5rem;
+  }
+}
+
+.event-name {
+  font-size: 1.8rem; /* Adjust to make it prominent */
+  font-weight: bold;
+  color: #444;
+  margin: 5px 0;
+  font-family: 'Roboto', sans-serif; /* Use Google font */
+}
+
+/* Description font style and size */
+.describe {
+  font-size: 1.3rem; /* Slightly smaller than event name */
+  color: #666;
+  font-style: italic; /* Makes description italic */
+  font-family: 'Roboto', sans-serif ; /* Use Google font */
+  margin: 5px 0;
+}
+
+/* Link styling */
+.link {
+  font-size: 1rem !important;
+  color: #007bff !important; /* Different color for link text */
+  font-family: 'Roboto', sans-serif; /* Use Google font */
+  margin: 5px 0;
+}
+
+/* Special link styling for link within .link */
+.special-link {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.special-link:hover {
+  color: darkblue;
+}
+
+.eventlink {
+  font-size: 1rem !important;
+  color: #007bff !important; /* Different color for link text */
+  font-family: 'Roboto', sans-serif; /* Use Google font */
+  margin: 5px 0;
+}
+
+/* Special link styling for link within .link */
+.special-eventlink {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.special-eventlink:hover {
+  color: darkblue;
+}
+
+
+
+
+
+
+
+h1 {
+  
+  margin: 6rem;
+  margin-bottom: 1rem;
+  width: 1800;
+  text-align: center;
+}
+p2{
+  font-size: 1.3em;
+    margin-left: 2%;
+    display: flex;
+}
+@media (max-width: 768px) {
+  h1 {
+   text-align: center !important;
+   display: flex;
+  }
+  p2{
+    font-size: 1.3em;
+    margin-left: 2%;
+    display: flex;
+  }
+  
+}
+
+.font-size{
+  font-size:1.3em;
+}
+
+
+
+a{
+  color:#007bff
+}
+a:hover{
+  color: red;
+}
+
+
+/* Define the right-to-left sliding animation */
+/*@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%);  
+    opacity: 0; 
+  }
+  100% {
+    transform: translateX(0);  
+    opacity: 1;  
+  }
+}
+
+/* Apply the animation to elements with class 'scroll-animation' */
+/*.scroll-animation {
+  opacity: 0;  
+  animation: slideRightToLeft 2s ease-out forwards; /
+}
+.scroll-animation {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+*/
+/*.scroll-animation {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scroll-animation.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animation-right-to-left {
+  
+  
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scroll-animation-right-to-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+*/
+/* Create a scroll-triggered animation using @keyframes */
+.scroll-animation, .scroll-animation-right-to-left {
+
+  transform: translateY(50px); /* Initially moved down */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  
+  font-size: 20px;
+}
+
+.scroll-animation.visible, .scroll-animation-right-to-left.visible {
+  opacity: 1;
+  transform: translateY(0); /* Transition to normal position */
+  transform: translateX(0);
+}
+
+.scroll-animation-right-to-left {
+  transform: translateX(400px); /* Initially moved right */
+}
+
+.scroll-animation-right-to-left.visible {
+  transform: translateX(0); /* Move to original position */
+}

@@ -1,0 +1,74 @@
+/* Apply Google Font globally */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Styles for the contact-us-container */
+.contact-us-container {
+  text-align: center;
+  padding: 20px;
+  color: skyblue !important;
+  background-color: hsl(0, 4%, 33%);
+  user-select: text !important;
+}
+
+
+
+
+/* Styling the header */
+h4 {
+  color: white;
+  font-size: x-large;
+}
+
+/* Styling for contact links */
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-family: 'Robot',sans-serif;
+  font-size: x-large;
+  
+  color: skyblue;
+  user-select: text;
+}
+
+.contact-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  color: rgb(64, 233, 29);
+}
+
+.contact-link:hover {
+  color: #0073b1; /* Example hover color, like LinkedIn's blue */
+}
+
+/* Styling contact info */
+.contact-info {
+  margin-top: 15px;
+  font-size: 16px;
+  color: skyblue;
+}
+
+.contact-info a {
+  color: rgb(39, 42, 233);
+  text-decoration: none;
+  transform: scale(1.1)
+}
+
+.contact-info a:hover {
+  color: #a7d6f0; /* Hover effect */
+}
+
+/* For scroll-to behavior on phone number */
+#phone-number {
+  scroll-margin-top: 50px; /* Optional: Adjust if you have a sticky header */
+}
+button{
+  font-size: large;
+}
+button:hover{
+  color: blue;
+  transform: scale(1.1);
+}
