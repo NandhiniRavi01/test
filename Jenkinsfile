@@ -4,8 +4,7 @@ pipeline {
     environment {
         COMPOSE_PROJECT_NAME = "python-app"
         APP_CONTAINER = "python-app"
-        PATH = "/usr/local/bin:${env.PATH}"
-        APP_URL = "http://localhost:5000"
+        APP_URL = "http://34.182.43.12:5000" // Use VM IP
     }
 
     stages {
@@ -17,58 +16,64 @@ pipeline {
             }
         }
 
-        stage('Verify Docker & Compose') {
+        stage('Verify Docker & Compose on VM') {
             steps {
-                echo '🔍 Verifying Docker installation'
-                sh 'docker --version'
-                sh 'docker compose version'
+                sshagent(['docker-vm-ssh']) {
+                    sh 'ssh -o StrictHostKeyChecking=no student-03-ac99854a89d2@34.182.43.12 "docker --version && docker compose version"'
+                }
             }
         }
 
-        stage('Build Image') {
+        stage('Build Image on VM') {
             steps {
-                echo '🐳 Building Docker image using Docker Compose'
-                sh 'docker compose build'
+                sshagent(['docker-vm-ssh']) {
+                    sh 'scp -r . student-03-ac99854a89d2@34.182.43.12:~/app'
+                    sh 'ssh -o StrictHostKeyChecking=no student-03-ac99854a89d2@34.182.43.12 "cd ~/app && docker compose build"'
+                }
             }
         }
 
-        stage('Run Container') {
+        stage('Run Container on VM') {
             steps {
-                echo '🚀 Starting Python application container'
-                sh 'docker compose up -d'
+                sshagent(['docker-vm-ssh']) {
+                    sh 'ssh -o StrictHostKeyChecking=no student-03-ac99854a89d2@34.182.43.12 "cd ~/app && docker compose up -d"'
+                }
             }
         }
 
         stage('Wait for Application') {
             steps {
-                echo '⏳ Waiting for Python app to be ready'
-                retry(5) {
-                    sleep 5
-                    sh "curl -f ${APP_URL}"
+                sshagent(['docker-vm-ssh']) {
+                    retry(5) {
+                        sh "ssh -o StrictHostKeyChecking=no student-03-ac99854a89d2@34.182.43.12 'curl -f ${APP_URL}' || exit 1"
+                        sleep 5
+                    }
                 }
             }
         }
 
         stage('Test Application') {
             steps {
-                echo '🧪 Testing Python Flask API'
-                sh "curl --fail ${APP_URL}"
+                sshagent(['docker-vm-ssh']) {
+                    sh "ssh -o StrictHostKeyChecking=no student-03-ac99854a89d2@34.182.43.12 'curl --fail ${APP_URL}'"
+                }
             }
         }
     }
 
     post {
         always {
-            echo '🧽 Pruning unused Docker resources'
-            sh 'docker system prune -af || true'
+            sshagent(['docker-vm-ssh']) {
+                sh 'ssh -o StrictHostKeyChecking=no student-03-ac99854a89d2@34.182.43.12 "docker system prune -af || true"'
+            }
         }
 
         success {
-            echo '✅ Python application deployed and tested successfully'
+            echo '✅ Python application deployed and tested successfully on VM'
         }
 
         failure {
-            echo '❌ Pipeline failed – please check Jenkins logs'
+            echo '❌ Pipeline failed – check Jenkins logs'
         }
     }
 }
